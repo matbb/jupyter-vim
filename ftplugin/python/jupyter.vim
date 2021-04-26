@@ -18,6 +18,7 @@ command! -buffer -nargs=0 -complete=file
 
 " Debugging commands
 command! -nargs=0   PythonSetBreak  call jupyter#PythonDbstop()
+command! -nargs=0   PythonDebugInteractive call jupyter#DebugInteractive()
 
 "}}}--------------------------------------------------------------------------
 "        Key Mappings: {{{

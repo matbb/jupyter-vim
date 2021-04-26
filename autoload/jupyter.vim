@@ -210,6 +210,20 @@ function! jupyter#PythonDbstop() abort
     normal! j
 endfunction
 
+function! jupyter#SendRawInput(cmd) abort
+    execute 'Pythonx _jupyter_session.send_raw_input("'.a:cmd.'")"
+endfunction
+
+function! jupyter#DebugInteractive()
+  let j = 'start'
+  while j != 'exit'
+    let j = input("> ")
+    if j != 'exit'
+      execute 'Pythonx _jupyter_session.send_raw_input("' . j . '")' 
+    endif
+  endwhile
+endfunction
+
 " Timer callback to fill jupyter console buffer
 function! jupyter#UpdateEchom(timer) abort
     Pythonx _jupyter_session.vim_client.timer_echom()

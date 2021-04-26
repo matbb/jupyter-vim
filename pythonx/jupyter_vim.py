@@ -327,6 +327,19 @@ class JupyterVimSession():
         msg_id = self.kernel_client.send(cmd)
         return (cmd, msg_id)
 
+    def send_raw_input(self, cmd):
+        """Send raw input to the kernel on its input channel
+
+        .. note:: vim command `:JupyterSendRawInput`.
+
+        Parameters
+        ----------
+        cmd : str
+            Lines of code to send to the kernel.
+        """
+        self.kernel_client.km_client.input(cmd)
+        return None
+
     @if_connected
     @monitor_decorator
     def run_file_in_ipython(self, flags='', filename=''):
